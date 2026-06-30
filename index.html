@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graciano Ulrich MATHEY-APOSSAN — Bilan annuel 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --ink:#13151A;
+  --card:#1B1E26;
+  --card-2:#20242E;
+  --line:#2C313D;
+  --copper:#D88A4C;
+  --copper-soft:#D88A4C26;
+  --paper:#EDEAE3;
+  --paper-dim:#A9A9AAA;
+  --paper-mute:#8C8E96;
+  --success:#6FA888;
+  --success-soft:#6FA88822;
+  --urgent:#C96A5A;
+  --radius:14px;
+  --display: 'Fraunces', serif;
+  --body: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--copper); color:var(--ink);}
+
+/* ============ utility ============ */
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+[data-en]{display:none;}
+html[data-lang="en"] [data-fr]{display:none;}
+html[data-lang="en"] [data-en]{display:inline;}
+html[data-lang="en"] [data-en].block{display:block;}
+
+/* ============ top bar ============ */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(19,21,26,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 28px; max-width:1080px; margin:0 auto;
+}
+.brand{
+  font-family:var(--mono); font-size:13px; letter-spacing:0.04em;
+  color:var(--paper-mute);
+}
+.brand strong{color:var(--copper); font-weight:600;}
+.lang-toggle{
+  display:flex; gap:2px; background:var(--card); border:1px solid var(--line);
+  border-radius:100px; padding:3px;
+}
+.lang-toggle button{
+  font-family:var(--mono); font-size:12px; padding:6px 14px; border-radius:100px;
+  border:none; background:transparent; color:var(--paper-mute); cursor:pointer;
+  transition:all .2s ease; font-weight:500; letter-spacing:0.03em;
+}
+.lang-toggle button.active{background:var(--copper); color:var(--ink);}
+
+/* ============ hero ============ */
+.hero{padding:90px 0 60px; position:relative;}
+.eyebrow{
+  font-family:var(--mono); font-size:13px; color:var(--copper);
+  letter-spacing:0.08em; text-transform:uppercase; margin-bottom:22px;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{
+  content:''; width:28px; height:1px; background:var(--copper);
+}
+h1.hero-title{
+  font-family:var(--display); font-weight:600; font-size:clamp(2.4rem, 6vw, 4.4rem);
+  line-height:1.04; letter-spacing:-0.01em; color:var(--paper); max-width:880px;
+}
+h1.hero-title em{font-style:italic; color:var(--copper); font-weight:500;}
+.hero-sub{
+  margin-top:26px; font-size:1.15rem; color:var(--paper-mute); max-width:620px;
+  font-weight:300; line-height:1.7;
+}
+.hero-meta{
+  margin-top:46px; display:flex; gap:0; flex-wrap:wrap;
+  border-top:1px solid var(--line); padding-top:0;
+}
+.hero-meta-item{
+  flex:1; min-width:150px; padding:22px 24px 0; border-left:1px solid var(--line);
+}
+.hero-meta-item:first-child{border-left:none; padding-left:0;}
+.hero-meta-num{
+  font-family:var(--display); font-size:2.1rem; font-weight:600; color:var(--paper);
+  display:block; line-height:1.1;
+}
+.hero-meta-label{
+  font-family:var(--mono); font-size:11.5px; color:var(--paper-mute);
+  text-transform:uppercase; letter-spacing:0.05em; margin-top:6px; display:block;
+}
+
+/* ============ section header ============ */
+.section{padding:78px 0;}
+.section + .section{border-top:1px solid var(--line);}
+.section-head{margin-bottom:44px; max-width:680px;}
+.section-num{
+  font-family:var(--mono); font-size:12px; color:var(--copper); letter-spacing:0.06em;
+  margin-bottom:14px; display:block;
+}
+h2.section-title{
+  font-family:var(--display); font-size:clamp(1.7rem, 3.5vw, 2.5rem); font-weight:600;
+  color:var(--paper); line-height:1.15;
+}
+.section-desc{margin-top:14px; color:var(--paper-mute); font-size:1.02rem; font-weight:300;}
+
+/* ============ charts grid ============ */
+.charts-grid{
+  display:grid; grid-template-columns:1.3fr 1fr; gap:24px; margin-top:10px;
+}
+@media (max-width:760px){.charts-grid{grid-template-columns:1fr;}}
+.chart-card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px;
+}
+.chart-card h3{
+  font-family:var(--body); font-weight:600; font-size:0.95rem; color:var(--paper);
+  margin-bottom:18px; display:flex; align-items:center; gap:8px;
+}
+.chart-card h3::before{
+  content:''; width:6px; height:6px; border-radius:50%; background:var(--copper);
+}
+.chart-wrap{position:relative; height:280px;}
+.chart-wrap.short{height:220px;}
+
+/* ============ timeline / log ============ */
+.log{position:relative; padding-left:32px; margin-top:10px;}
+.log::before{
+  content:''; position:absolute; left:5px; top:8px; bottom:8px; width:1px;
+  background:linear-gradient(to bottom, var(--copper), var(--line) 90%);
+}
+.log-month{margin-bottom:54px; position:relative;}
+.log-month:last-child{margin-bottom:0;}
+.log-dot{
+  position:absolute; left:-32px; top:4px; width:11px; height:11px; border-radius:50%;
+  background:var(--ink); border:2px solid var(--copper);
+}
+.log-month-head{
+  display:flex; align-items:baseline; gap:14px; margin-bottom:18px; flex-wrap:wrap;
+}
+.log-month-name{
+  font-family:var(--display); font-size:1.5rem; font-weight:600; color:var(--paper);
+}
+.log-month-stat{
+  font-family:var(--mono); font-size:12.5px; color:var(--paper-mute);
+  background:var(--card); border:1px solid var(--line); padding:4px 11px; border-radius:100px;
+}
+.log-month-note{
+  font-size:0.96rem; color:var(--paper-mute); font-weight:300; margin-bottom:18px; max-width:680px;
+}
+.proj-chips{display:flex; flex-wrap:wrap; gap:8px;}
+.proj-chip{
+  font-family:var(--mono); font-size:12px; padding:6px 12px; border-radius:8px;
+  background:var(--card); border:1px solid var(--line); color:var(--paper-mute);
+}
+.proj-chip strong{color:var(--paper); font-weight:500;}
+
+/* ============ projects accordion ============ */
+.proj-list{display:flex; flex-direction:column; gap:14px; margin-top:10px;}
+.proj-item{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; transition:border-color .2s ease;
+}
+.proj-item[open]{border-color:var(--copper);}
+.proj-item summary{
+  list-style:none; cursor:pointer; padding:24px 28px; display:flex;
+  align-items:center; justify-content:space-between; gap:20px;
+}
+.proj-item summary::-webkit-details-marker{display:none;}
+.proj-summary-left{display:flex; align-items:center; gap:18px; flex:1; min-width:0;}
+.proj-tag{
+  font-family:var(--mono); font-size:11px; color:var(--ink); background:var(--copper);
+  padding:4px 9px; border-radius:6px; font-weight:600; white-space:nowrap; flex-shrink:0;
+}
+.proj-name{
+  font-family:var(--display); font-size:1.25rem; font-weight:600; color:var(--paper);
+}
+.proj-period{
+  font-family:var(--mono); font-size:12px; color:var(--paper-mute); white-space:nowrap;
+}
+.proj-toggle{
+  width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  color:var(--paper-mute); font-size:16px; transition:transform .25s ease;
+}
+.proj-item[open] .proj-toggle{transform:rotate(45deg); border-color:var(--copper); color:var(--copper);}
+.proj-body{padding:0 28px 28px;}
+.proj-desc{color:var(--paper-mute); font-size:0.97rem; font-weight:300; max-width:720px; margin-bottom:20px;}
+.proj-tasks{
+  display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line); padding-top:18px;
+}
+.task-row{
+  display:flex; align-items:flex-start; gap:12px; font-size:0.92rem;
+}
+.task-status{
+  font-family:var(--mono); font-size:10.5px; padding:2px 8px; border-radius:5px;
+  flex-shrink:0; margin-top:2px; white-space:nowrap; font-weight:600;
+}
+.task-status.done{background:var(--success-soft); color:var(--success);}
+.task-status.progress{background:var(--copper-soft); color:var(--copper);}
+.task-status.new{background:#3A3F4C; color:var(--paper-mute);}
+.task-label{color:var(--paper); font-weight:400;}
+.task-meta{font-family:var(--mono); font-size:11px; color:var(--paper-mute); margin-left:auto; flex-shrink:0; padding-left:10px;}
+
+/* ============ skills ============ */
+.skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:10px;}
+@media (max-width:760px){.skills-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:480px){.skills-grid{grid-template-columns:1fr;}}
+.skill-card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px;
+}
+.skill-card h4{
+  font-family:var(--body); font-size:0.85rem; color:var(--copper); text-transform:uppercase;
+  letter-spacing:0.05em; margin-bottom:12px; font-weight:600;
+}
+.skill-tags{display:flex; flex-wrap:wrap; gap:7px;}
+.skill-tag{
+  font-family:var(--mono); font-size:11.5px; color:var(--paper); background:var(--card-2);
+  border:1px solid var(--line); padding:4px 10px; border-radius:6px;
+}
+
+/* ============ closing ============ */
+.closing{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:50px 44px; margin-top:10px; position:relative; overflow:hidden;
+}
+.closing::before{
+  content:'"'; position:absolute; top:-20px; right:30px; font-family:var(--display);
+  font-size:11rem; color:var(--copper-soft); line-height:1; font-weight:700;
+}
+.closing p{
+  font-family:var(--display); font-size:1.4rem; font-style:italic; font-weight:500;
+  color:var(--paper); max-width:680px; line-height:1.5; position:relative;
+}
+.closing .sign{
+  margin-top:28px; font-family:var(--mono); font-size:13px; color:var(--copper);
+  letter-spacing:0.04em;
+}
+
+footer{
+  padding:40px 0 60px; text-align:center; font-family:var(--mono); font-size:12px;
+  color:var(--paper-mute);
+}
+
+/* print */
+@media print{
+  .topbar{position:static;}
+  .proj-item{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">G.U. <strong>MATHEY-APOSSAN</strong> <span data-fr>· Bilan 2026</span><span data-en>· Year in Review 2026</span></div>
+    <div class="lang-toggle">
+      <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow"><span data-fr>Janvier — Juin 2026</span><span data-en>January — June 2026</span></div>
+    <h1 class="hero-title">
+      <span data-fr>Un semestre de <em>code</em>, de chantiers menés et de personnes formées.</span>
+      <span data-en>A half-year of <em>code</em>, projects shipped, and people mentored.</span>
+    </h1>
+    <p class="hero-sub">
+      <span data-fr>Graciano Ulrich MATHEY-APOSSAN — Développeur Full-Stack. Ce document retrace, projet par projet, le travail effectué entre janvier et juin 2026 chez Digitaleurs : développement, audits techniques, formation de stagiaires et coordination d'équipe.</span>
+      <span data-en>Graciano Ulrich MATHEY-APOSSAN — Full-Stack Developer. This document traces, project by project, the work carried out between January and June 2026 at Digitaleurs: development, technical audits, intern mentoring and team coordination.</span>
+    </p>
+
+    <div class="hero-meta" id="hero-meta">
+      <!-- filled by JS -->
+    </div>
+  </section>
+
+  <!-- OVERVIEW CHARTS -->
+  <section class="section" id="overview">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title"><span data-fr>Vue d'ensemble</span><span data-en>Overview</span></h2>
+      <p class="section-desc">
+        <span data-fr">Répartition du temps suivi et rythme des livraisons sur les six premiers mois de l'année.</span>
+        <span data-en>Distribution of tracked time and delivery pace across the first six months of the year.</span>
+      </p>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3><span data-fr>Heures suivies par mois</span><span data-en>Hours logged per month</span></h3>
+        <div class="chart-wrap"><canvas id="chartMonthly"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3><span data-fr>Répartition par projet</span><span data-en>Time by project</span></h3>
+        <div class="chart-wrap"><canvas id="chartProjects"></canvas></div>
+      </div>
+    </div>
+    <div class="charts-grid" style="margin-top:24px;">
+      <div class="chart-card">
+        <h3><span data-fr>Tickets traités par mois</span><span data-en>Tickets closed per month</span></h3>
+        <div class="chart-wrap short"><canvas id="chartTickets"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3><span data-fr>Statut des tickets</span><span data-en>Ticket status</span></h3>
+        <div class="chart-wrap short"><canvas id="chartStatus"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section" id="timeline">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title"><span data-fr>Le journal du semestre</span><span data-en>The half-year log</span></h2>
+      <p class="section-desc">
+        <span data-fr>Mois par mois, les chantiers ouverts et les temps forts.</span>
+        <span data-en>Month by month, the projects in motion and the highlights.</span>
+      </p>
+    </div>
+    <div class="log" id="log"><!-- filled by JS --></div>
+  </section>
+
+  <!-- PROJECTS DETAIL -->
+  <section class="section" id="projects">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title"><span data-fr>Projets en détail</span><span data-en>Projects in detail</span></h2>
+      <p class="section-desc">
+        <span data-fr>Chaque chantier, son contexte, et une sélection de tâches marquantes issues du suivi Redmine.</span>
+        <span data-en>Each project, its context, and a selection of notable tasks drawn from Redmine tracking.</span>
+      </p>
+    </div>
+    <div class="proj-list" id="proj-list"><!-- filled by JS --></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title"><span data-fr>Champs de compétence mobilisés</span><span data-en>Skills exercised</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4 data-fr>Back-end & API</h4><h4 data-en>Back-end & API</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">GraphQL</span><span class="skill-tag">REST</span>
+          <span class="skill-tag">NestJS</span><span class="skill-tag">Node.js</span>
+          <span class="skill-tag">MongoDB</span><span class="skill-tag">Resolvers</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4 data-fr>Front-end</h4><h4 data-en>Front-end</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Next.js</span><span class="skill-tag">React</span>
+          <span class="skill-tag">Shopify Liquid</span><span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4 data-fr>Infra & DevOps</h4><h4 data-en>Infra & DevOps</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Nginx</span><span class="skill-tag">VPS</span>
+          <span class="skill-tag">Ngrok</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4 data-fr>Analytics & Tracking</h4><h4 data-en>Analytics & Tracking</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Google Analytics</span><span class="skill-tag">Google Tag Manager</span>
+          <span class="skill-tag">Pixel Health</span><span class="skill-tag">Looker Studio</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4 data-fr>ERP & Comptabilité</h4><h4 data-en>ERP & Accounting</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Odoo</span><span class="skill-tag">Plan comptable</span>
+          <span class="skill-tag">Grand livre</span><span class="skill-tag">Export Sage</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4 data-fr>Encadrement & Process</h4><h4 data-en>Mentoring & Process</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Formation Jr devs</span><span class="skill-tag">Documentation</span>
+          <span class="skill-tag">Estimation projet</span><span class="skill-tag">Audit technique</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="section" id="closing">
+    <div class="closing">
+      <p>
+        <span data-fr>Six mois de travail tracés ticket par ticket, heure par heure — la preuve la plus honnête du chemin parcouru.</span>
+        <span data-en>Six months of work tracked ticket by ticket, hour by hour — the most honest proof of the ground covered.</span>
+      </p>
+      <div class="sign">— Graciano Ulrich MATHEY-APOSSAN</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span data-fr">Document généré à partir du suivi Redmine et du journal d'heures, janvier–juin 2026.</span>
+  <span data-en>Document generated from Redmine tracking and the hours log, January–June 2026.</span>
+</footer>
+
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('data-lang', l);
+  document.getElementById('btn-fr').classList.toggle('active', l==='fr');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+}
+
+/* ===================== DATA ===================== */
+
+const monthly = [
+  {m:'Jan', mEn:'Jan', hours:103},
+  {m:'Fév', mEn:'Feb', hours:118},
+  {m:'Mar', mEn:'Mar', hours:96},
+  {m:'Avr', mEn:'Apr', hours:74},
+  {m:'Mai', mEn:'May', hours:88},
+  {m:'Juin', mEn:'Jun', hours:62}
+];
+
+const ticketsPerMonth = [
+  {m:'Jan', mEn:'Jan', n:18},
+  {m:'Fév', mEn:'Feb', n:16},
+  {m:'Mar', mEn:'Mar', n:14},
+  {m:'Avr', mEn:'Apr', n:22},
+  {m:'Mai', mEn:'May', n:34},
+  {m:'Juin', mEn:'Jun', n:46}
+];
+
+const projectHours = [
+  {name:'Hoteli', hours:158},
+  {name:'Aegles', hours:96},
+  {name:'Odoo', hours:74},
+  {name:'TP Serveurs / CI-CD', hours:52},
+  {name:'Aonic', hours:38},
+  {name:'NestJS / Migration', hours:24},
+  {name:'Analytics / GA', hours:32},
+  {name:'Autres', hours:67}
+];
+
+const statusCounts = {fr:['Résolu / Fermé','En cours','Nouveau','Feedback / Suspendu'], en:['Resolved / Closed','In progress','New','Feedback / Suspended'], data:[148,21,17,7]};
+
+const log = [
+  {
+    month:'Janvier', monthEn:'January',
+    note:{fr:"Démarrage sur Hoteli (réservations, réductions) et lancement du site Cave à Vins. Bascule progressive vers l'infrastructure : premiers TP serveurs et CI/CD.", en:"Kickoff on Hoteli (bookings, discounts) and launch of the Cave à Vins site. Gradual shift toward infrastructure: first server and CI/CD work."},
+    projects:[{n:'Hoteli', d:'52h'},{n:'Cave à Vins', d:'8h'},{n:'TP Serveurs', d:'12h'}]
+  },
+  {
+    month:'Février', monthEn:'February',
+    note:{fr:"Déploiement continu (CI/CD, Docker) finalisé. Entrée en formation Odoo : fabrication, nomenclatures, contrôle qualité. Premiers travaux sur le projet CJET.", en:"Continuous deployment (CI/CD, Docker) completed. Onboarding into Odoo: manufacturing, bills of materials, quality control. First work on the CJET project."},
+    projects:[{n:'TP Serveurs / CI-CD', d:'34h'},{n:'Odoo', d:'28h'},{n:'Hoteli', d:'16h'}]
+  },
+  {
+    month:'Mars', monthEn:'March',
+    note:{fr:"Hébergement Odoo, intégration Ngrok. Lancement de la structure de réservation groupée sur Hoteli. Premières estimations REVOLT et début Shopify Analytics.", en:"Odoo hosting, Ngrok integration. Launch of the group-booking structure on Hoteli. First REVOLT estimations and start of Shopify Analytics."},
+    projects:[{n:'Hoteli', d:'31h'},{n:'Ngrok-Odoo', d:'18h'},{n:'CJET', d:'12h'},{n:'Shopify Analytics', d:'9h'}]
+  },
+  {
+    month:'Avril', monthEn:'April',
+    note:{fr:"Bascule vers l'analytics avancé (GA, GTM, pixels) puis vers Aonic — audit complet de la santé des pixels e-commerce. Démarrage NestJS pour la migration backend.", en:"Shift toward advanced analytics (GA, GTM, pixels), then to Aonic — full audit of e-commerce pixel health. NestJS kickoff for the backend migration."},
+    projects:[{n:'Analytics / GA', d:'26h'},{n:'Aonic', d:'22h'},{n:'NestJS', d:'14h'},{n:'SimplyBookMe', d:'9h'}]
+  },
+  {
+    month:'Mai', monthEn:'May',
+    note:{fr:"Refonte du module comptabilité Hoteli : plan comptable, grand livre, règles d'auto-posting, exports Sage et Odoo. Déploiement Oloid et Navi Togo en parallèle.", en:"Overhaul of the Hoteli accounting module: chart of accounts, general ledger, auto-posting rules, Sage and Odoo exports. Oloid and Navi Togo deployments in parallel."},
+    projects:[{n:'Hoteli — Comptabilité', d:'46h'},{n:'Oloid', d:'14h'},{n:'Coorixis', d:'12h'}]
+  },
+  {
+    month:'Juin', monthEn:'June',
+    note:{fr:"Refonte complète d'Aegles (site Shopify) : header, footer, PDP, Academy. Montée en charge de l'encadrement de stagiaires sur JavaScript et premiers points sur Medlogue.", en:"Full rebuild of Aegles (Shopify site): header, footer, PDP, Academy. Increased mentoring load on JavaScript interns and first sessions on Medlogue."},
+    projects:[{n:'Aegles', d:'48h'},{n:'Formation Jr', d:'14h'},{n:'Medlogue', d:'4h'}]
+  }
+];
+
+const projects = [
+  {
+    tag:'01', name:'Hoteli', period:'Jan — Juin 2026',
+    desc:{fr:"Plateforme de gestion hôtelière (réception, restaurant, réservations) développée en GraphQL/Node. Travail continu sur six mois : de la réservation simple à la réservation de groupe, jusqu'à un module de comptabilité complet.", en:"Hotel management platform (front desk, restaurant, bookings) built on GraphQL/Node. Continuous work across six months: from simple bookings to group bookings, up to a full accounting module."},
+    tasks:[
+      {fr:'Création de l\'entité Groupe Réservation et ses attributs', en:'Creation of the Group Reservation entity and its attributes', status:'done', date:'05/03'},
+      {fr:'Résolveurs sur la réservation de groupe', en:'Resolvers for group reservations', status:'done', date:'10/03'},
+      {fr:'Réduction par pourcentage ou montant fixe', en:'Discount by percentage or fixed amount', status:'done', date:'06/01'},
+      {fr:'Création de l\'historique (audit trail) sur toutes les entités', en:'History / audit trail creation across all entities', status:'done', date:'19/01'},
+      {fr:'Module comptabilité — Plan comptable neutre & Grand livre', en:'Accounting module — neutral chart of accounts & general ledger', status:'done', date:'01/06'},
+      {fr:'Auto-posting : réservations chambre, salle, groupe, dépenses', en:'Auto-posting: room, hall, group bookings, expenses', status:'done', date:'21/05'},
+      {fr:'Exports comptables Sage et Odoo', en:'Sage and Odoo accounting exports', status:'done', date:'21/05'},
+      {fr:'Tests shifts, transferts de chambre, devises', en:'Shift tests, room transfers, currencies', status:'done', date:'mai'}
+    ]
+  },
+  {
+    tag:'02', name:'Aegles', period:'Juin 2026',
+    desc:{fr:"Site e-commerce Shopify (skincare). Refonte structurelle complète en quelques semaines : header, footer, pages produit, page Academy avec métaobjets dynamiques.", en:"Shopify e-commerce site (skincare). Complete structural rebuild in a few weeks: header, footer, product pages, Academy page with dynamic metaobjects."},
+    tasks:[
+      {fr:'Structuration de la homepage via les sections Shopify', en:'Homepage structuring via Shopify sections', status:'done', date:'26/06'},
+      {fr:'Back & Front — PDP Block 3, Subscription bar, Key ingredients', en:'Back & Front — PDP Block 3, Subscription bar, Key ingredients', status:'done', date:'17-18/06'},
+      {fr:'Aegles Academy — dynamisation par métaobjets (Block 1 & 2)', en:'Aegles Academy — metaobject-driven dynamisation (Block 1 & 2)', status:'done', date:'19-25/06'},
+      {fr:'Refactorisation de la logique d\'affichage par modulo', en:'Refactoring display logic via modulo calculation', status:'done', date:'—'},
+      {fr:'Correction du bug critique de pricing PDP (urgent)', en:'Fix of critical PDP pricing bug (urgent)', status:'done', date:'24/06'},
+      {fr:'Tests cross-browser (Safari)', en:'Cross-browser testing (Safari)', status:'progress', date:'29/06'}
+    ]
+  },
+  {
+    tag:'03', name:'Odoo', period:'Fév — Mai 2026',
+    desc:{fr:"Montée en compétence et déploiement d'Odoo Community : fabrication, nomenclatures, contrôle qualité, puis hébergement en autonomie sur serveur Docker.", en:"Skill-building and deployment of Odoo Community: manufacturing, bills of materials, quality control, then self-hosted deployment on a Docker server."},
+    tasks:[
+      {fr:'Configuration fabrication et points de contrôle qualité', en:'Manufacturing configuration and quality control points', status:'done', date:'09/02'},
+      {fr:'Ordres de fabrication, ordres de travail, MTO', en:'Manufacturing orders, work orders, MTO', status:'done', date:'10/02'},
+      {fr:'Recherche hébergement Odoo Community pour usage public', en:'Research on Odoo Community hosting for public use', status:'done', date:'24/02'},
+      {fr:'Déploiement Docker, config Nginx, debug connexion', en:'Docker deployment, Nginx config, connection debugging', status:'done', date:'mai'},
+      {fr:'Formation TP générée pour approfondir routes & approvisionnements', en:'Generated training exercises on routes & procurement', status:'done', date:'12/02'}
+    ]
+  },
+  {
+    tag:'04', name:'Aonic', period:'Avr — Juin 2026',
+    desc:{fr:"Audit complet de la santé des pixels marketing d'un site e-commerce : Meta, TikTok, Google, Klaviyo et une douzaine d'autres intégrations vérifiées une à une.", en:"Full marketing-pixel health audit for an e-commerce site: Meta, TikTok, Google, Klaviyo and a dozen other integrations checked one by one."},
+    tasks:[
+      {fr:'Tests de tous les pixels (Facebook, TikTok, Klaviyo, Recharge…)', en:'Testing of all pixels (Facebook, TikTok, Klaviyo, Recharge…)', status:'done', date:'16/04'},
+      {fr:'Vérification Pixel Health (critique e-commerce)', en:'Pixel Health verification (e-commerce critical)', status:'done', date:'17/04'},
+      {fr:'Structure globale du dashboard Google Looker Studio', en:'Overall structure of the Google Looker Studio dashboard', status:'done', date:'17/04'},
+      {fr:'Dynamisation menu mobile et header', en:'Mobile menu and header dynamisation', status:'done', date:'10/06'}
+    ]
+  },
+  {
+    tag:'05', name:'TP Serveurs / CI-CD', period:'Jan — Fév 2026',
+    desc:{fr:"Montée en compétence infrastructure : configuration serveur, installation des paquets, mise en place complète d'un pipeline CI/CD avec Docker.", en:"Infrastructure skill-building: server configuration, package installation, full CI/CD pipeline setup with Docker."},
+    tasks:[
+      {fr:'Configuration et installation de paquets serveur', en:'Server configuration and package installation', status:'done', date:'29/01'},
+      {fr:'Mise en place du pipeline CI/CD (Docker)', en:'CI/CD pipeline setup (Docker)', status:'done', date:'02-04/02'},
+      {fr:'Déploiement effectué et validé', en:'Deployment completed and validated', status:'done', date:'20/02'}
+    ]
+  },
+  {
+    tag:'06', name:'Hoteli — Module Comptabilité', period:'Avr — Mai 2026',
+    desc:{fr:"Chantier autonome au sein de Hoteli : conception complète d'un module de comptabilité — du plan comptable jusqu'aux exports vers des logiciels tiers.", en:"Standalone workstream within Hoteli: full design of an accounting module — from chart of accounts to exports to third-party software."},
+    tasks:[
+      {fr:'Attribution de permissions comptables sans écrasement', en:'Accounting permission assignment without overwrite', status:'done', date:'21/05'},
+      {fr:'Règle avance / séjour pour paiement en cours de séjour', en:'Advance / stay rule for in-stay payments', status:'done', date:'21/05'},
+      {fr:'Moteur d\'enregistrement automatique des écritures', en:'Automatic journal entry recording engine', status:'done', date:'21/05'},
+      {fr:'Exclusion des transactions techniques internes', en:'Exclusion of internal technical transactions', status:'done', date:'21/05'}
+    ]
+  },
+  {
+    tag:'07', name:'Analytics & Tracking', period:'Mar — Avr 2026',
+    desc:{fr:"Mise en place de Google Analytics, Google Tag Manager et d'un site de test dédié au tracking avancé d'événements e-commerce.", en:"Setup of Google Analytics, Google Tag Manager, and a dedicated test site for advanced e-commerce event tracking."},
+    tasks:[
+      {fr:'Création du compte GA et configuration du site', en:'GA account creation and site configuration', status:'done', date:'19/03'},
+      {fr:'Ajout du code Google Tag dans le head', en:'Google Tag code added to the head', status:'done', date:'19/03'},
+      {fr:'Construction d\'un site dédié au tracking avancé', en:'Build of a dedicated advanced-tracking site', status:'done', date:'24/03'}
+    ]
+  },
+  {
+    tag:'08', name:'NestJS — Migration', period:'Mar / Avr / Juin 2026',
+    desc:{fr:"Apprentissage et application de NestJS (modules, pipes, guards, intercepteurs) en vue d'une migration backend du système existant.", en:"NestJS learning and application (modules, pipes, guards, interceptors) toward a backend migration of the existing system."},
+    tasks:[
+      {fr:'Création de l\'app NestJS et des controllers', en:'NestJS app and controllers creation', status:'done', date:'24/04'},
+      {fr:'Pipes, Middleware, Exception filters, Providers', en:'Pipes, Middleware, Exception filters, Providers', status:'done', date:'24/04'},
+      {fr:'Connexion MongoDB', en:'MongoDB connection', status:'done', date:'30/04'}
+    ]
+  },
+  {
+    tag:'09', name:'Coorixis', period:'Mai 2026',
+    desc:{fr:"Construction et tests systématiques d'un site vitrine multi-pages : Home, About, Projects, Contact, FAQ — bloc par bloc.", en:"Build and systematic testing of a multi-page showcase site: Home, About, Projects, Contact, FAQ — block by block."},
+    tasks:[
+      {fr:'Construction et test des pages Home et About (4 blocs)', en:'Build and test of Home and About pages (4 blocks)', status:'done', date:'22/05'},
+      {fr:'Tests Hero, Landing Gallery, Header', en:'Hero, Landing Gallery, Header tests', status:'done', date:'22/05'}
+    ]
+  },
+  {
+    tag:'10', name:'Encadrement & Formation', period:'Mai — Juin 2026',
+    desc:{fr:"Accueil et montée en compétence de deux stagiaires : installation des environnements, formation JavaScript, création d'exercices, assistance de code quotidienne.", en:"Onboarding and skill-building of two interns: environment setup, JavaScript training, exercise creation, daily code assistance."},
+    tasks:[
+      {fr:'Installation OS, configs comptes, IDE pour les stagiaires', en:'OS install, account configs, IDE setup for interns', status:'done', date:'02/06'},
+      {fr:'Formation JS finie — création d\'exercices pour TP', en:'JS training completed — exercise creation for practicals', status:'done', date:'08/06'},
+      {fr:'Assistance de code et explication des concepts non compris', en:'Code assistance and explanation of unclear concepts', status:'done', date:'03/06'}
+    ]
+  }
+];
+
+/* ===================== RENDER ===================== */
+
+// Hero meta
+const totalHours = monthly.reduce((a,b)=>a+b.hours,0);
+const totalTickets = statusCounts.data.reduce((a,b)=>a+b,0);
+document.getElementById('hero-meta').innerHTML = `
+  <div class="hero-meta-item">
+    <span class="hero-meta-num">${totalHours}+</span>
+    <span class="hero-meta-label" data-fr>Heures suivies</span><span class="hero-meta-label" data-en>Hours logged</span>
+  </div>
+  <div class="hero-meta-item">
+    <span class="hero-meta-num">${totalTickets}</span>
+    <span class="hero-meta-label" data-fr>Tickets traités</span><span class="hero-meta-label" data-en>Tickets handled</span>
+  </div>
+  <div class="hero-meta-item">
+    <span class="hero-meta-num">${projects.length+15}</span>
+    <span class="hero-meta-label" data-fr>Projets / chantiers</span><span class="hero-meta-label" data-en>Projects / workstreams</span>
+  </div>
+  <div class="hero-meta-item">
+    <span class="hero-meta-num">2</span>
+    <span class="hero-meta-label" data-fr>Stagiaires encadrés</span><span class="hero-meta-label" data-en>Interns mentored</span>
+  </div>
+`;
+
+// Timeline log
+document.getElementById('log').innerHTML = log.map(item => `
+  <div class="log-month">
+    <div class="log-dot"></div>
+    <div class="log-month-head">
+      <span class="log-month-name"><span data-fr>${item.month}</span><span data-en>${item.monthEn}</span></span>
+    </div>
+    <p class="log-month-note"><span data-fr>${item.note.fr}</span><span data-en>${item.note.en}</span></p>
+    <div class="proj-chips">
+      ${item.projects.map(p=>`<span class="proj-chip"><strong>${p.n}</strong> · ${p.d}</span>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+// Projects accordion
+document.getElementById('proj-list').innerHTML = projects.map((p,i) => `
+  <details class="proj-item" ${i<2?'open':''}>
+    <summary>
+      <div class="proj-summary-left">
+        <span class="proj-tag">${p.tag}</span>
+        <span class="proj-name">${p.name}</span>
+      </div>
+      <span class="proj-period">${p.period}</span>
+      <span class="proj-toggle">+</span>
+    </summary>
+    <div class="proj-body">
+      <p class="proj-desc"><span data-fr>${p.desc.fr}</span><span data-en>${p.desc.en}</span></p>
+      <div class="proj-tasks">
+        ${p.tasks.map(t => `
+          <div class="task-row">
+            <span class="task-status ${t.status}">${t.status==='done' ? '<span data-fr>FAIT</span><span data-en>DONE</span>' : t.status==='progress' ? '<span data-fr>EN COURS</span><span data-en>IN PROGRESS</span>' : '<span data-fr>NOUVEAU</span><span data-en>NEW</span>'}</span>
+            <span class="task-label"><span data-fr>${t.fr}</span><span data-en>${t.en}</span></span>
+            <span class="task-meta">${t.date}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </details>
+`).join('');
+
+/* ===================== CHARTS ===================== */
+Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
+Chart.defaults.color = '#A9A9AA';
+
+const isEn = () => document.documentElement.getAttribute('data-lang') === 'en';
+
+const ctxMonthly = document.getElementById('chartMonthly').getContext('2d');
+new Chart(ctxMonthly, {
+  type:'bar',
+  data:{
+    labels: monthly.map(m=>m.m),
+    datasets:[{
+      data: monthly.map(m=>m.hours),
+      backgroundColor:'#D88A4C',
+      borderRadius:6,
+      maxBarThickness:46
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#1B1E26', borderColor:'#2C313D', borderWidth:1, titleColor:'#EDEAE3', bodyColor:'#EDEAE3', padding:10}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#8C8E96', font:{family:"'IBM Plex Mono', monospace", size:11}}},
+      y:{grid:{color:'#2C313D'}, ticks:{color:'#8C8E96', font:{family:"'IBM Plex Mono', monospace", size:11}}}
+    }
+  }
+});
+
+const ctxProjects = document.getElementById('chartProjects').getContext('2d');
+new Chart(ctxProjects, {
+  type:'doughnut',
+  data:{
+    labels: projectHours.map(p=>p.name),
+    datasets:[{
+      data: projectHours.map(p=>p.hours),
+      backgroundColor:['#D88A4C','#C96A5A','#6FA888','#7A8FB8','#B89A4C','#8C6FA8','#5C9FB8','#5A6470'],
+      borderColor:'#1B1E26',
+      borderWidth:3
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'bottom', labels:{boxWidth:10, padding:14, font:{size:11}}},
+      tooltip:{backgroundColor:'#1B1E26', borderColor:'#2C313D', borderWidth:1, titleColor:'#EDEAE3', bodyColor:'#EDEAE3', padding:10}
+    },
+    cutout:'62%'
+  }
+});
+
+const ctxTickets = document.getElementById('chartTickets').getContext('2d');
+new Chart(ctxTickets, {
+  type:'line',
+  data:{
+    labels: ticketsPerMonth.map(t=>t.m),
+    datasets:[{
+      data: ticketsPerMonth.map(t=>t.n),
+      borderColor:'#D88A4C',
+      backgroundColor:'#D88A4C22',
+      fill:true,
+      tension:0.4,
+      pointBackgroundColor:'#D88A4C',
+      pointBorderColor:'#1B1E26',
+      pointBorderWidth:2,
+      pointRadius:5
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#1B1E26', borderColor:'#2C313D', borderWidth:1, titleColor:'#EDEAE3', bodyColor:'#EDEAE3', padding:10}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#8C8E96', font:{family:"'IBM Plex Mono', monospace", size:11}}},
+      y:{grid:{color:'#2C313D'}, ticks:{color:'#8C8E96', font:{family:"'IBM Plex Mono', monospace", size:11}}}
+    }
+  }
+});
+
+const ctxStatus = document.getElementById('chartStatus').getContext('2d');
+new Chart(ctxStatus, {
+  type:'bar',
+  data:{
+    labels: statusCounts.fr,
+    datasets:[{
+      data: statusCounts.data,
+      backgroundColor:['#6FA888','#D88A4C','#5A6470','#C96A5A'],
+      borderRadius:6
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#1B1E26', borderColor:'#2C313D', borderWidth:1, titleColor:'#EDEAE3', bodyColor:'#EDEAE3', padding:10}},
+    scales:{
+      x:{grid:{color:'#2C313D'}, ticks:{color:'#8C8E96', font:{family:"'IBM Plex Mono', monospace", size:11}}},
+      y:{grid:{display:false}, ticks:{color:'#8C8E96', font:{size:11}}}
+    }
+  }
+});
+</script>
+
+</body>
+</html>
